@@ -15,5 +15,6 @@ MonoBehaviour:
   level: 1
   enemyName: Fire slime
   maxHP: 10
+  currentHP: 0
   attack: 2
   defense: 0

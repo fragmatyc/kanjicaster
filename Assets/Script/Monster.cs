@@ -8,7 +8,9 @@ public class Monster : MonoBehaviour
     public float combatTriggerRanger = 2f;
     public float moveSpeed = 2f;
     public LayerMask obstacleMask;
+    public string enemyId;
     public EnemyData enemyData;
+    public SceneTransitionManager sceneTransitionManager;
 
     private Transform target;
     private Rigidbody2D rb;
@@ -16,6 +18,15 @@ public class Monster : MonoBehaviour
 
     void Awake()
     {
+        var ctx = CombatContext.Instance;
+        Debug.Log($"Loading Monster with enemyId: {enemyId}");
+        Debug.Log($"ctx.enemyDefeated: {ctx.enemyDefeated}");
+        Debug.Log($"ctx.enemyId: {ctx.enemyId}");
+        if (ctx.enemyDefeated && ctx.enemyId == enemyId)
+        {
+            Destroy(gameObject);
+        }
+
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         GameObject p = GameObject.FindGameObjectWithTag("Player");
@@ -26,7 +37,7 @@ public class Monster : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, visionRange);
-        
+
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, combatTriggerRanger);
     }
@@ -61,7 +72,7 @@ public class Monster : MonoBehaviour
                 Vector2 dir = toPlayer.normalized;
                 rb.MovePosition(rb.position + dir * moveSpeed * Time.fixedDeltaTime);
                 if (dir.x < -0.01f)
-                    sr.flipX = false; 
+                    sr.flipX = false;
                 else if (dir.x > 0.01f)
                     sr.flipX = true;
             }
@@ -79,9 +90,10 @@ public class Monster : MonoBehaviour
         var ctx = CombatContext.Instance;
         ctx.enemyData = enemyData;
         ctx.returnSceneName = SceneManager.GetActiveScene().name;
-        ctx.playerReturnPosition = transform.position;
+        ctx.playerReturnPosition = target.transform.position;
         ctx.enemyDefeated = false;
+        ctx.enemyId = enemyId;
 
-        SceneTransitionManager.Instance.FadeToScene(combatSceneName);
+        sceneTransitionManager.FadeToScene(combatSceneName);
     }
 }

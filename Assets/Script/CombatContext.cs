@@ -12,6 +12,8 @@ public class CombatContext : MonoBehaviour
     public Vector3 playerReturnPosition;
     public bool enemyDefeated;
 
+    public string enemyId;
+
     private void Awake()
     {
         if (Instance != null)
@@ -28,5 +30,7 @@ public class CombatContext : MonoBehaviour
         enemyData = null;
         returnSceneName = "";
         enemyDefeated = false;
+        enemyId = "";
+        playerReturnPosition = Vector3.zero;
     }
 }
