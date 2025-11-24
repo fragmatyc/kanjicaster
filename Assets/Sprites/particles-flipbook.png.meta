@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: a9fca14f3bcd9cd41ac3dbb215386a52
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6910572407525737490
+    second: particles-flipbook_0
+  - first:
+      213: -7580296671796500235
+    second: particles-flipbook_1
+  - first:
+      213: 2757173888992407059
+    second: particles-flipbook_2
+  - first:
+      213: 5728660071783817937
+    second: particles-flipbook_3
+  - first:
+      213: -7349455057796223307
+    second: particles-flipbook_4
+  - first:
+      213: -4166225241064550038
+    second: particles-flipbook_5
+  - first:
+      213: -2139804218345737177
+    second: particles-flipbook_6
+  - first:
+      213: 396391953802572454
+    second: particles-flipbook_7
+  - first:
+      213: -7031966012894582143
+    second: particles-flipbook_8
+  - first:
+      213: -1230014781644910479
+    second: particles-flipbook_9
+  - first:
+      213: 1509183121633649066
+    second: particles-flipbook_10
+  - first:
+      213: 5470364395797624981
+    second: particles-flipbook_11
+  - first:
+      213: 2621759436813060053
+    second: particles-flipbook_12
+  - first:
+      213: 1901749607690220325
+    second: particles-flipbook_13
+  - first:
+      213: -509904204437905519
+    second: particles-flipbook_14
+  - first:
+      213: 2445059977469178230
+    second: particles-flipbook_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: particles-flipbook_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 775
+        width: 247
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2140039adf847ef50800000000000000
+      internalID: 6910572407525737490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particles-flipbook_1
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 773
+        width: 246
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f86e71d6506dc690800000000000000
+      internalID: -7580296671796500235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particles-flipbook_2
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 773
+        width: 242
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31eef5d3b03734620800000000000000
+      internalID: 2757173888992407059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particles-flipbook_3
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 773
+        width: 241
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d263a9cbf9408f40800000000000000
+      internalID: 5728660071783817937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particles-flipbook_4
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 517
+        width: 241
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5beab53609d710a90800000000000000
+      internalID: -7349455057796223307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particles-flipbook_5
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 518
+        width: 241
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a61d41487389e26c0800000000000000
+      internalID: -4166225241064550038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particles-flipbook_6
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 517
+        width: 240
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 724be9c8663ed42e0800000000000000
+      internalID: -2139804218345737177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particles-flipbook_7
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 518
+        width: 245
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a2b93eb164408500800000000000000
+      internalID: 396391953802572454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particles-flipbook_8
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 265
+        width: 245
+        height: 242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18a6cc01b20796e90800000000000000
+      internalID: -7031966012894582143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particles-flipbook_9
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 265
+        width: 245
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 170539fa21c1eeee0800000000000000
+      internalID: -1230014781644910479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particles-flipbook_10
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 265
+        width: 247
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa12df99d02b1f410800000000000000
+      internalID: 1509183121633649066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particles-flipbook_11
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 263
+        width: 246
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 598367b4f63aaeb40800000000000000
+      internalID: 5470364395797624981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particles-flipbook_12
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 7
+        width: 246
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d745cd215c526420800000000000000
+      internalID: 2621759436813060053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particles-flipbook_13
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 7
+        width: 244
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5233d1a313f546a10800000000000000
+      internalID: 1901749607690220325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particles-flipbook_14
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 5
+        width: 245
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19f1001e3d47ce8f0800000000000000
+      internalID: -509904204437905519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: particles-flipbook_15
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 6
+        width: 247
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 671339358199ee120800000000000000
+      internalID: 2445059977469178230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      particles-flipbook_0: 6910572407525737490
+      particles-flipbook_1: -7580296671796500235
+      particles-flipbook_10: 1509183121633649066
+      particles-flipbook_11: 5470364395797624981
+      particles-flipbook_12: 2621759436813060053
+      particles-flipbook_13: 1901749607690220325
+      particles-flipbook_14: -509904204437905519
+      particles-flipbook_15: 2445059977469178230
+      particles-flipbook_2: 2757173888992407059
+      particles-flipbook_3: 5728660071783817937
+      particles-flipbook_4: -7349455057796223307
+      particles-flipbook_5: -4166225241064550038
+      particles-flipbook_6: -2139804218345737177
+      particles-flipbook_7: 396391953802572454
+      particles-flipbook_8: -7031966012894582143
+      particles-flipbook_9: -1230014781644910479
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

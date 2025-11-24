@@ -1,4 +1,0 @@
-repository "KanjiCaster 2025-11-21_19-57-10/KanjiCaster@3573671694332@cloud"
-  path "/"
-    br "/main"
-    co "/main"

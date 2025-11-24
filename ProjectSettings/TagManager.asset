@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Ennemies
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - UI
   - Collision
   - Walkbehind
-  - 
-  - 
+  - Player
+  - Ennemies
   - 
   - 
   - 
@@ -55,6 +56,15 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 2226544519
+    locked: 0
+  - name: Cards
+    uniqueID: 339029141
+    locked: 0
+  - name: Card Overlays
+    uniqueID: 2620529487
+    locked: 0
+  - name: Tansitions
+    uniqueID: 3178621055
     locked: 0
   m_RenderingLayers:
   - Default
