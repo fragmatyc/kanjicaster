@@ -4,8 +4,7 @@ public class StoryTrigger : MonoBehaviour
 {
     public DialogManager dialogManager;
 
-    [TextArea(2, 5)]
-    public string[] storyLines;
+    public DialogLine[] storyLines;
 
     bool hasTrigger = false;
 
@@ -16,7 +15,7 @@ public class StoryTrigger : MonoBehaviour
         if (!collider.CompareTag("Player")) return;
 
         hasTrigger = true;
-        Debug.Log("A été trigger");
+        Debug.Log("A ï¿½tï¿½ trigger");
         dialogManager.StartDialog(storyLines);
 
     }
