@@ -1,15 +1,27 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum MonsterType
+{
+    Undefined,
+    FireSlime
+}
+
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Monster : MonoBehaviour
 {
-    public string combatSceneName = "CombatScene";
-    public float visionRange = 5f;
-    public float combatTriggerRanger = 2f;
-    public float moveSpeed = 2f;
-    public LayerMask obstacleMask;
+    [Header("Monster info")]
     public string enemyId;
+    public MonsterType type;
     public EnemyData enemyData;
+    public float visionRange = 5f;
+    public float combatTriggerRange = 2f;
+    public float moveSpeed = 2f;
+    public int initiative = 0;
+
+    [Header("References")]
+    public LayerMask obstacleMask;
     public SceneTransitionManager sceneTransitionManager;
 
     private Transform target;
@@ -19,9 +31,6 @@ public class Monster : MonoBehaviour
     void Awake()
     {
         var ctx = CombatContext.Instance;
-        Debug.Log($"Loading Monster with enemyId: {enemyId}");
-        Debug.Log($"ctx.enemyDefeated: {ctx.enemyDefeated}");
-        Debug.Log($"ctx.enemyId: {ctx.enemyId}");
         if (ctx.enemyDefeated && ctx.enemyId == enemyId)
         {
             Destroy(gameObject);
@@ -39,7 +48,7 @@ public class Monster : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, visionRange);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, combatTriggerRanger);
+        Gizmos.DrawWireSphere(transform.position, combatTriggerRange);
     }
 
     void FixedUpdate()
@@ -51,8 +60,7 @@ public class Monster : MonoBehaviour
 
         if (dist <= visionRange)
         {
-
-            if (dist < combatTriggerRanger)
+            if (dist < combatTriggerRange)
             {
                 CollideWithPlayer();
                 return;
@@ -70,7 +78,7 @@ public class Monster : MonoBehaviour
             if (hasLineOfSight)
             {
                 Vector2 dir = toPlayer.normalized;
-                rb.MovePosition(rb.position + dir * moveSpeed * Time.fixedDeltaTime);
+                rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * dir);
                 if (dir.x < -0.01f)
                     sr.flipX = false;
                 else if (dir.x > 0.01f)
@@ -93,7 +101,9 @@ public class Monster : MonoBehaviour
         ctx.playerReturnPosition = target.transform.position;
         ctx.enemyDefeated = false;
         ctx.enemyId = enemyId;
+        ctx.playerData = target.GetComponent<Player>();
+        ctx.type = type;
 
-        sceneTransitionManager.FadeToScene(combatSceneName);
+        sceneTransitionManager.FadeToScene("CombatScene");
     }
 }

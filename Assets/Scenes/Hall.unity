@@ -3741,23 +3741,23 @@ MonoBehaviour:
   - speakerName: Jiminy
     text: Bonjour {{Nom de joueur}}, Bienvenu dans cette salle qui sera ton tombeau
       si tu reste ici trop longtemps.
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: eb35323cbbc407b4c973f82868f8196e, type: 3}
   - speakerName: Jiminy
     text: "Mais ne t'inqui\xE8te pas un labyrinthe t'attends. A chaque recoin, tu
       trouvera tr\xE9sor, \xE9nigme et certainement la mort. "
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: eb35323cbbc407b4c973f82868f8196e, type: 3}
   - speakerName: Jiminy
     text: AHAHAHAHAH
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: eb35323cbbc407b4c973f82868f8196e, type: 3}
   - speakerName: 'Jiminy '
     text: "Mais ne t'inqui\xE9te pas. Comme je t'aime bien, tu vas revenir ici. Vivre
       \xE9ternellement n'est pas le plus grand espoir de l'homme ? "
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: eb35323cbbc407b4c973f82868f8196e, type: 3}
   - speakerName: Jiminy
     text: "Ou alors \xE9tait-ce la connaissance ? Soit ici tu auras droit aux deux
       appr\xEAte toi, fais ton choix, feu eau ou bois. Chacun seront une arme de
       choix ahaahah."
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: eb35323cbbc407b4c973f82868f8196e, type: 3}
 --- !u!4 &1121225608
 Transform:
   m_ObjectHideFlags: 0

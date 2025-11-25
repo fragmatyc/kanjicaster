@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "RPG/Enemy")]
 public class EnemyData : ScriptableObject

@@ -6,6 +6,25 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/FireStoryLineLabyrinth.unity
+    guid: bf438d31f7b4fe34894fb44f41a12dfc
+  - enabled: 1
+    path: Assets/Scenes/CombatScene.unity
+    guid: 9d745eecc292918459621f43f4a669fb
+  - enabled: 1
+    path: Assets/Scenes/Hall.unity
+    guid: 75c5d4381f8f0c6469eab5fbf56382e3
+  - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: 12e8b1f0e8443334797018e38e67dac1
+  - enabled: 1
     path: Assets/Settings/Scenes/2D URP Scene Template.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/WaterStoryLineLabyrinth.unity
+    guid: f055f269096ad264e9f2b582fc2e4208
+  - enabled: 1
+    path: Assets/Scenes/WoodStoryLineLabyrinth.unity
+    guid: 64152c79265fec247940ac3fc0de59f8
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

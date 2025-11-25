@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CombatContext : MonoBehaviour
 {
@@ -6,6 +6,7 @@ public class CombatContext : MonoBehaviour
 
     [Header("Who/what we fight")]
     public EnemyData enemyData;
+    public Player playerData;
 
     [Header("Return to exploration")]
     public string returnSceneName;
@@ -13,6 +14,7 @@ public class CombatContext : MonoBehaviour
     public bool enemyDefeated;
 
     public string enemyId;
+    public MonsterType type;
 
     private void Awake()
     {
@@ -28,9 +30,11 @@ public class CombatContext : MonoBehaviour
     public void Clear()
     {
         enemyData = null;
+        playerData = null;
         returnSceneName = "";
         enemyDefeated = false;
         enemyId = "";
+        type = MonsterType.Undefined;
         playerReturnPosition = Vector3.zero;
     }
 }

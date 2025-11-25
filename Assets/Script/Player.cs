@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public int attack = 2;
     public int defense = 0;
     public int experience = 0;
+    public int initiative = 0;
     public int experienceToNextLevel = 10;
     void Start()
     {

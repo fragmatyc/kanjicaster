@@ -1,11 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 [System.Serializable]
 public class DialogLine
 {
-    public string speakerName;         
+    public string speakerName;
     [TextArea(2, 4)]
-    public string text;              
+    public string text;
     public Sprite portrait;
 }

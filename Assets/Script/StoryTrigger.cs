@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StoryTrigger : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class StoryTrigger : MonoBehaviour
         if (!collider.CompareTag("Player")) return;
 
         hasTrigger = true;
-        Debug.Log("A �t� trigger");
+        Debug.Log("A été trigger");
         dialogManager.StartDialog(storyLines);
 
     }
