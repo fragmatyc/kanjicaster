@@ -1,0 +1,19 @@
+{
+  "dialogLines": [
+    {
+      "speakerName": "Jiminy",
+      "text": "Bonjour {{Nom de joueur}}, Bienvenu dans cette salle qui sera ton tombeau si tu reste ici trop longtemps.",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Mais ne t'inquiète pas un labyrinthe t'attends. A chaque recoin, tu trouvera trésor, énigme et certainement la mort. ",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Ou alors était-ce la connaissance ? Soit ici tu auras droit aux deux apprête toi, fais ton choix, feu eau ou bois. Chacun seront une arme de choix ahaahah.",
+      "portraitName": "Jiminy"
+    }
+  ]
+}
