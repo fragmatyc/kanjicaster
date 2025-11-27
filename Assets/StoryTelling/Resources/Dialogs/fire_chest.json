@@ -1,0 +1,36 @@
+{
+  "dialogLines": [
+    {
+      "speakerName": "Jiminy",
+      "text": "Oulalala {{Nom de joueur}}, ce coffre est en feu ! Es-tu vraiment pyromane ?",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Maintenant avec une connaissance pareille, tu détruiras tout tes ennemis, ... ou pas !",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Es-tu sûr de ton choix ?",
+      "portraitName": "Jiminy",
+      "choices": [
+        {
+          "text": "Oui je choisi le pouvoir du feu !",
+          "actionType": "SetGameStateVariable",
+          "actionParam":"GetMainCard"
+        },
+        {
+          "text": "Non",
+          "actionType": "RefuseChoice",
+          "nextLineIndex":3
+        }
+      ]
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Je me doutais que le feu était trop chaud pour toi ! Avec cette attitude fragile tu resteras ici avec moi. Quel malheur !",
+      "portraitName": "Jiminy"
+    }
+  ]
+}

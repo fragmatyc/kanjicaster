@@ -6,6 +6,7 @@ public class GameState : MonoBehaviour
 
     public int deathCount = 0;
     public int playerLevel = 1;
+    public string MainCard = "";
 
     void Awake()
     {

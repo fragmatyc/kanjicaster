@@ -1,0 +1,36 @@
+{
+  "dialogLines": [
+    {
+      "speakerName": "Jiminy",
+      "text": "J'ai les chaussettes trempées merci, espèce d'abruti.",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Ce coffre contient le pouvoir de l'eau. De quoi te noyer tout seul HA HA HA !",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Es-tu sûr de ton choix ?",
+      "portraitName": "Jiminy",
+      "choices": [
+        {
+          "text": "Oui je choisi le pouvoir du l'eau !",
+          "actionType": "SetGameStateVariable",
+          "actionParam":"GetMainCard"
+        },
+        {
+          "text": "Non",
+          "actionType": "RefuseChoice",
+          "nextLineIndex":3
+        }
+      ]
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Une belle poule sêche qu'on voit là ! Tu devrais peut être te mouiller un peu.",
+      "portraitName": "Jiminy"
+    }
+  ]
+}

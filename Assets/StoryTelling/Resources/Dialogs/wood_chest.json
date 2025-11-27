@@ -1,0 +1,36 @@
+{
+  "dialogLines": [
+    {
+      "speakerName": "Jiminy",
+      "text": "Oulalala {{Nom de joueur}}, ce coffre sent la forêt, n'est-ce pas ? La forêt ce que tu ne reverras jamais si tu traines !",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Oseras-tu choisir le pouvoir du bois ? Ce pouvoir de vie l'apanache des elfes ? Ou préfères-tu rester ici avec moi ?",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Es-tu sûr de ton choix ?",
+      "portraitName": "Jiminy",
+      "choices": [
+        {
+          "text": "Oui je choisi le pouvoir du bois !",
+          "actionType": "SetGameStateVariable",
+          "actionParam":"GetMainCard"
+        },
+        {
+          "text": "Non",
+          "actionType": "RefuseChoice",
+          "nextLineIndex":3
+        }
+      ]
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Le bois est trop rafiné pour toi ? Pauvre petite créature.",
+      "portraitName": "Jiminy"
+    }
+  ]
+}

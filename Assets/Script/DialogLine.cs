@@ -7,7 +7,8 @@ public enum ChoiceActionType
 {
     DialogDefault,
     ChangeScene,
-    SetGameStateVariable
+    SetGameStateVariable,
+    RefuseChoice
 }
 
 [System.Serializable]
