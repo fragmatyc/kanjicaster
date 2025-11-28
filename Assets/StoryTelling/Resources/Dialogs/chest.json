@@ -1,0 +1,25 @@
+{
+  "dialogLines": [
+    {
+      "speakerName": "??",
+      "text": "Ce coffre à l'air d'être spécial...",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "??",
+      "text": "Dois-je l'ouvrir ?",
+      "portraitName": "Jiminy",
+      "choices": [
+        {
+          "text": "Oui !",
+          "actionType": "SetGameStateVariable",
+          "actionParam":"Ink"
+        },
+        {
+          "text": "Non",
+          "actionType": "RefuseChoice"
+        }
+      ]
+    }
+  ]
+}

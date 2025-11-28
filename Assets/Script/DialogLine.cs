@@ -8,6 +8,8 @@ public enum ChoiceActionType
     DialogDefault,
     ChangeScene,
     SetGameStateVariable,
+    SetInventoryItem,
+    OpenDoor,
     RefuseChoice
 }
 

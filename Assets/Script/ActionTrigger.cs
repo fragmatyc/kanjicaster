@@ -7,8 +7,11 @@ public class ActionTrigger : MonoBehaviour
     public DialogManager dialogManager;
     public string ObjectName;
     public string expectedActionParam = "GetMainCard";
+    public string objectNeeded = "";
+    public GameObject objectToDestroy= null;
 
     private bool playerInRange = false;
+    
     bool alreadyTriggered = false;
 
      private void OnEnable()
@@ -75,11 +78,40 @@ public class ActionTrigger : MonoBehaviour
         {
             return;
         }
-        if (GameState.Instance != null && expectedActionParam == "GetMainCard")
-        {   
-            GameState.Instance.MainCard = ObjectName;
-            return;
+
+        if (GameState.Instance != null) {
+            switch (choice.actionType)
+            {
+                case ChoiceActionType.RefuseChoice:
+                    // Do nothing
+                    return;
+                case ChoiceActionType.SetGameStateVariable:
+                    if (choice.actionParam == "Ink") {
+                        GameState.Instance.inkCapacity += 5;
+                        return;
+                    }                    
+                    if (choice.actionParam == "MainCard") {
+                        GameState.Instance.MainCard = ObjectName;
+                        return;
+                    }  
+                    
+                    return;
+                case ChoiceActionType.SetInventoryItem:
+                    if (!GameState.Instance.inventory.Contains(ObjectName)) {
+                        GameState.Instance.inventory.Add(ObjectName);
+                    }
+                    return;
+                case ChoiceActionType.OpenDoor:
+                    if (GameState.Instance.inventory.Contains(objectNeeded)) {
+                        GameState.Instance.inventory.Remove(objectNeeded);
+                        // Add logic to open the door here
+                        objectToDestroy.SetActive(false);
+                    } else {
+                        dialogManager.StartDialog("Dialogs/door_locked");
+                    }
+                    return;
+            }
         }
-        
+      
     }
 }
