@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class ConditionalStory : MonoBehaviour
+public class ConditionalStory
 {
     public int minDeathCount=0;
     public int maxDeathCount=9999;

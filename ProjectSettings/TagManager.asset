@@ -6,6 +6,7 @@ TagManager:
   tags:
   - StoryTelling
   - Ennemies
+  - boss
   layers:
   - Default
   - TransparentFX

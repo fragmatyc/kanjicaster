@@ -5,6 +5,7 @@ public class StoryTrigger : MonoBehaviour
     public DialogManager dialogManager;
     public string defaultResourcePathDialog;
 
+    
     public ConditionalStory[] conditionalStories;
     
     bool hasTrigger = false;

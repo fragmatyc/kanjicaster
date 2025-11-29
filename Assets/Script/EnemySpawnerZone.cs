@@ -39,8 +39,10 @@ public class EnemySpawnerZone : MonoBehaviour
             Vector3 spawnPos = spawnPoint.position;
 
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
-
-            Instantiate(prefab, spawnPos, spawnPoint.rotation);
+            
+            GameObject ennemyCreate = Instantiate(prefab, spawnPos, spawnPoint.rotation);
+            Monster monsterComponent = ennemyCreate.GetComponent<Monster>();
+            monsterComponent.enemyId = System.Guid.NewGuid().ToString();
             points.RemoveAt(index);
         }
     }
