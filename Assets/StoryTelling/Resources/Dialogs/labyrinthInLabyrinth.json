@@ -1,0 +1,19 @@
+{
+  "dialogLines": [
+   {
+        "speakerName": "Jiminy",
+        "text": "Je suis Génial ! Un labyrinthe dans un labyrinthe !",
+        "portraitName": "Jiminy"
+   },
+    {
+          "speakerName": "Jiminy",
+          "text": "Je suis sûr que tu n'y avais pas pensé ! HAHAHAHAHA !",
+          "portraitName": "Jiminy"
+    },
+    {
+          "speakerName": "Jiminy",
+          "text": "Rien que pour toi. Tout pour t'embêter un peu plus ! HAHAHAHAHA !",
+          "portraitName": "Jiminy"
+    }
+  ]
+}
