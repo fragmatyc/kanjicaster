@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   cardName: Life
   kanji: "\u751F"
-  description: Heals for 10 hp
+  description: Heals for 50 hp
   rarity: 2
   type: 4
   element: 4
   inkCost: 0
   attack: 0
   defense: 0
-  health: 10
+  health: 50
   animationPrefab: {fileID: 7590552149612547956, guid: 552725e430a08d44a926afe065deb1b4, type: 3}
   animationDuration: 1
   animationType: 2

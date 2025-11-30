@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using TMPro;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
@@ -64,6 +65,12 @@ public class CombatManager : MonoBehaviour
         var player = ctx.playerData;
         if (player == null) return;
 
+        // Initialize enemy deck
+        if (ctx.enemyDeck == null || ctx.enemyDeck.Count == 0)
+        {
+            ctx.enemyDeck = new System.Collections.Generic.List<CardData>(enemy.deck);
+        }
+
         enemyGameObject = EnemyPrefabFactory.instance.CreateEnemy(enemy);
         enemy.currentHP = enemy.maxHP;
         enemyNameText.text = $"{enemy.enemyName} (Lvl. {enemy.level})";
@@ -81,6 +88,11 @@ public class CombatManager : MonoBehaviour
         {
             ctx.SetTurnState(TurnState.Enemy);
         }
+
+        var enemyPos = enemyGameObject.transform.position;
+        var enemyTranform = enemyGameObject.GetComponent<SpriteRenderer>();
+        enemyPos.y += enemyTranform.bounds.extents.y;
+        enemyDamageText.transform.position = enemyPos;
 
         StartTurn();
     }
@@ -189,6 +201,8 @@ public class CombatManager : MonoBehaviour
         var rawCombo = CombatContext.Instance.GetCombo();
         // Process combos
         var combo = ComboManager.Instance != null ? ComboManager.Instance.ProcessCombos(rawCombo) : rawCombo;
+        Debug.Log($"Raw combo: {string.Join(", ", rawCombo.Select(c => c.cardName))}");
+        Debug.Log($"Combo: {string.Join(", ", combo.Select(c => c.cardName))}");
         var cardPlayed = combo[0];
         StartCoroutine(ShowComboText(comboText, cardPlayed));
 
@@ -227,6 +241,7 @@ public class CombatManager : MonoBehaviour
                     Debug.Log("CasterToTargetProjectile");
                     isProjectile = true;
                     var playerPos = playerGameObject.transform.position;
+                    playerPos.x += .25f;
                     playerPos.y += .25f;
                     var animInstance = Instantiate(card.animationPrefab, playerPos, Quaternion.identity);
                     animInstance.GetComponent<Rigidbody2D>().linearVelocity = (enemyGameObject.transform.position - playerPos).normalized * 10;

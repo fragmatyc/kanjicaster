@@ -13,6 +13,7 @@ public class EnemyData : ScriptableObject
     public int defense = 0;
     public int initiative = 0;
     public Enemies enemyType;
+    public CardElement mainElement;
     public GameObject prefab;
     public List<CardData> deck;
 }

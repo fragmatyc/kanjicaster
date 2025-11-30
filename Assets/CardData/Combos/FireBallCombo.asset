@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1244b70165b030845a6eacda70ff0f8c, type: 3}
   m_Name: FireBallCombo
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardName: Fire ball
+  cardName: Fireball
   kanji: 
   description: 
   rarity: 0

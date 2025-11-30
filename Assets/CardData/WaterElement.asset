@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1244b70165b030845a6eacda70ff0f8c, type: 3}
   m_Name: WaterElement
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardName: Mizu
+  cardName: Water
   kanji: "\u6C34"
   description: A water stream deals 40 dmg
   rarity: 1
@@ -22,3 +22,6 @@ MonoBehaviour:
   attack: 40
   defense: 0
   health: 0
+  animationPrefab: {fileID: 8389367071390238037, guid: 5a75c17dfaf684142a6858490f04abf1, type: 3}
+  animationDuration: 1
+  animationType: 1

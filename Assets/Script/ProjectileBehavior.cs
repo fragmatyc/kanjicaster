@@ -17,7 +17,9 @@ public class ProjectileBehavior : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (hasHit) return;
-        if (collision.gameObject == target)
+
+        // Check if the collided object is the target or a child of the target
+        if (collision.transform.root == target.transform.root)
         {
             Hit();
         }
@@ -26,7 +28,8 @@ public class ProjectileBehavior : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (hasHit) return;
-        if (collision.gameObject == target)
+        // Check if the collided object is the target or a child of the target
+        if (collision.gameObject.transform.root == target.transform.root)
         {
             Hit();
         }

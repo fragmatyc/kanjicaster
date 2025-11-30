@@ -15,13 +15,16 @@ MonoBehaviour:
   level: 1
   enemyName: Flying Demon
   maxHP: 400
-  currentHP: 0
+  currentHP: 50
   attack: 2
   defense: 0
   initiative: 40
   enemyType: 2
+  mainElement: 1
   prefab: {fileID: 3641455302961451945, guid: 5b21e5f5902ce8a4eb6d417d9facdd1c, type: 3}
   deck:
-  - {fileID: 11400000, guid: 8003bcf77e6774b429e9ce941cd86808, type: 2}
   - {fileID: 11400000, guid: 7ecdb50d5fcdb61478d2e12eeca87b40, type: 2}
-  - {fileID: 11400000, guid: 7ecdb50d5fcdb61478d2e12eeca87b40, type: 2}
+  - {fileID: 11400000, guid: e4333d4fafb84e444a3ec5ea436ddde5, type: 2}
+  - {fileID: 11400000, guid: c8ccc1db284ca8f4dbf06003ea93a2eb, type: 2}
+  - {fileID: 11400000, guid: ae50e0b0b41af394aa9bfeb37e3af01c, type: 2}
+  - {fileID: 11400000, guid: 5b9d9256014ac9147af42e0b1068040d, type: 2}

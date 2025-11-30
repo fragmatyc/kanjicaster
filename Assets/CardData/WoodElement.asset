@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1244b70165b030845a6eacda70ff0f8c, type: 3}
   m_Name: WoodElement
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardName: Ki
+  cardName: Wood
   kanji: "\u6728"
   description: A tree falls causing 40 dmg
   rarity: 1
@@ -22,3 +22,6 @@ MonoBehaviour:
   attack: 40
   defense: 0
   health: 0
+  animationPrefab: {fileID: 0}
+  animationDuration: 1
+  animationType: 0
