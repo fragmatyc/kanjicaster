@@ -22,3 +22,5 @@ MonoBehaviour:
   attack: 40
   defense: 0
   health: 0
+  animationPrefab: {fileID: 409910466754405759, guid: e24ccb0d68e9b7847985c1f0f053c111, type: 3}
+  animationType: 1

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - StoryTelling
   - Ennemies
+  - ComboIndicator
   layers:
   - Default
   - TransparentFX

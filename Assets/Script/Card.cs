@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public TextMeshProUGUI cardNameText;
     public TextMeshProUGUI kanjiText;
@@ -40,8 +40,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         DisplayCard();
     }
 
-    void DisplayCard()
+    void Update()
     {
+        DisplayCard();
+    }
+
+    public void DisplayCard()
+    {
+        if (cardData == null || gameObject.activeSelf == false) return;
+
         if (cardNameText != null)
         {
             cardNameText.text = cardData.cardName;
@@ -84,5 +91,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
         }
 
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        handManager.OnClick(cardIndex);
     }
 }

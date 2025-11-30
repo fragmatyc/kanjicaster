@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class Player : MonoBehaviour
     public int experience = 0;
     public int initiative = 0;
     public int experienceToNextLevel = 10;
+
+    public List<CardData> deck = new();
+
     void Start()
     {
         var ctx = CombatContext.Instance;

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   level: 1
   enemyName: Fire slime
-  maxHP: 10
-  currentHP: 0
+  maxHP: 80
+  currentHP: 40
   attack: 2
   defense: 0
+  initiative: 1

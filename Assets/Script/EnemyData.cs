@@ -9,4 +9,5 @@ public class EnemyData : ScriptableObject
     public int currentHP = 10;
     public int attack = 2;
     public int defense = 0;
+    public int initiative = 0;
 }

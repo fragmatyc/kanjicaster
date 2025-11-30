@@ -1,5 +1,14 @@
 ﻿using UnityEngine;
 
+public enum SpellAnimationType
+{
+    Undefined,
+    AoEOnTarget,
+    AoEOnCaster,
+    CasterToTargetProjectile,
+    SkyToTargetProjectile,
+}
+
 public enum CardElement
 {
     Undefined,
@@ -33,7 +42,7 @@ public class CardData : ScriptableObject
     public string kanji;
     public string description;
 
-    [Header("Card Type  ")]
+    [Header("Card Type")]
     public CardRarity rarity;
     public CardType type;
     public CardElement element;
@@ -43,4 +52,9 @@ public class CardData : ScriptableObject
     public int attack;
     public int defense;
     public int health;
+
+    [Header("Animation")]
+    public GameObject animationPrefab;
+    public float animationDuration = 1f;
+    public SpellAnimationType animationType;
 }
