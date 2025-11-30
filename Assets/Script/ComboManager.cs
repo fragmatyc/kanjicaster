@@ -17,6 +17,28 @@ public class ComboManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        // Sort recipes by ingredient count descending to ensure specific combos are checked before generic ones
+        if (recipes != null)
+        {
+            recipes.Sort((a, b) =>
+            {
+                if (a.ingredients == null && b.ingredients == null) return 0;
+                if (a.ingredients == null) return 1;
+                if (b.ingredients == null) return -1;
+                return b.ingredients.Count.CompareTo(a.ingredients.Count);
+            });
+        }
+
+        Debug.Log("ComboManager initialized with " + recipes.Count + " recipes");
+        foreach (var recipe in recipes)
+        {
+            Debug.Log("Recipe: " + recipe.result.cardName);
+            foreach (var ingredient in recipe.ingredients)
+            {
+                Debug.Log("  Ingredient: " + ingredient.cardName);
+            }
+        }
     }
 
     /// <summary>
@@ -83,5 +105,102 @@ public class ComboManager : MonoBehaviour
         }
 
         return -1;
+    }
+
+    public CardData GetBestCardToPlay(List<CardData> hand)
+    {
+        if (hand == null || hand.Count == 0) return null;
+
+        // Prioritize using MORE cards: Check subsets of size 3, then 2, then 1
+        for (int size = hand.Count; size >= 1; size--)
+        {
+            var combinations = GetCombinations(hand, size);
+
+            CardData bestInTier = null;
+            int maxDamage = -1;
+
+            foreach (var combo in combinations)
+            {
+                // Check all permutations of this combination
+                var perms = GetPermutations(combo);
+                foreach (var perm in perms)
+                {
+                    List<CardData> result = ProcessCombos(perm);
+
+                    // User requirement: If result has more than 1 card, it's not a valid single combo -> Skip
+                    if (result.Count > 1) continue;
+
+                    // We found a valid result (single card output)
+                    CardData resultCard = result[0];
+                    if (resultCard == null) continue;
+
+                    // Since we iterate sizes descending, any valid result here is in the highest possible Tier
+                    // We just need to maximize damage within this Tier
+                    if (resultCard.attack > maxDamage)
+                    {
+                        maxDamage = resultCard.attack;
+                        bestInTier = resultCard;
+                    }
+                }
+            }
+
+            // If we found anything at this Tier, return the best one immediately
+            // This satisfies "1. Best 3-card, 2. If none, best 2-card..."
+            if (bestInTier != null)
+            {
+                return bestInTier;
+            }
+        }
+
+        return null;
+    }
+
+    private List<List<CardData>> GetCombinations(List<CardData> list, int length)
+    {
+        List<List<CardData>> result = new();
+        GetCombinationsRecursive(list, length, 0, new(), result);
+        return result;
+    }
+
+    private void GetCombinationsRecursive(List<CardData> list, int length, int start, List<CardData> current, List<List<CardData>> result)
+    {
+        if (current.Count == length)
+        {
+            result.Add(new(current));
+            return;
+        }
+
+        for (int i = start; i < list.Count; i++)
+        {
+            current.Add(list[i]);
+            GetCombinationsRecursive(list, length, i + 1, current, result);
+            current.RemoveAt(current.Count - 1);
+        }
+    }
+
+    private List<List<CardData>> GetPermutations(List<CardData> list)
+    {
+        List<List<CardData>> results = new();
+        if (list.Count == 0) return results;
+        if (list.Count == 1)
+        {
+            results.Add(new(list));
+            return results;
+        }
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            CardData card = list[i];
+            List<CardData> remaining = new(list);
+            remaining.RemoveAt(i); // Remove by index to handle duplicates correctly
+
+            List<List<CardData>> subPerms = GetPermutations(remaining);
+            foreach (var sub in subPerms)
+            {
+                sub.Insert(0, card);
+                results.Add(sub);
+            }
+        }
+        return results;
     }
 }

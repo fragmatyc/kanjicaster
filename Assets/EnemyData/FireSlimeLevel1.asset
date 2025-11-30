@@ -19,3 +19,7 @@ MonoBehaviour:
   attack: 2
   defense: 0
   initiative: 1
+  enemyType: 0
+  prefab: {fileID: 6401165996784759786, guid: 1a410d21bc648ab4ea69aec4d3fa9cb4, type: 3}
+  deck:
+  - {fileID: 11400000, guid: c8ccc1db284ca8f4dbf06003ea93a2eb, type: 2}

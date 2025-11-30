@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using TMPro;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +32,9 @@ public class CombatManager : MonoBehaviour
     public TextMeshProUGUI playerNameText;
     public TextMeshProUGUI turnText;
     public Animator turnTextAnimator;
+    public TextMeshProUGUI comboText;
+    public GameObject comboDisplayGameObject;
+    public float playedComboNameDuration = 1f;
 
     [Header("Scene Transition")]
     public SceneTransitionManager sceneTransitionManager;
@@ -39,7 +44,6 @@ public class CombatManager : MonoBehaviour
     public GameObject playerGameObject;
     public GameObject enemyGameObject;
     public Image enemyHealthBar;
-    public Animator enemyAnimator;
     public Image playerHealthBar;
     public Animator playerAnimator;
     public HandManager handManager;
@@ -60,6 +64,7 @@ public class CombatManager : MonoBehaviour
         var player = ctx.playerData;
         if (player == null) return;
 
+        enemyGameObject = EnemyPrefabFactory.instance.CreateEnemy(enemy);
         enemy.currentHP = enemy.maxHP;
         enemyNameText.text = $"{enemy.enemyName} (Lvl. {enemy.level})";
         enemyHealthBar.rectTransform.sizeDelta = new Vector2((float)enemy.currentHP / enemy.maxHP * 7.859985f, enemyHealthBar.rectTransform.sizeDelta.y);
@@ -100,15 +105,19 @@ public class CombatManager : MonoBehaviour
         var player = CombatContext.Instance.playerData;
         var enemy = CombatContext.Instance.enemyData;
 
-        // TODO Use played card
-        int damage = enemy.attack;
-        player.currentHP -= damage;
+        var playedCard = ComboManager.Instance.GetBestCardToPlay(CombatContext.Instance.enemyHand);
+        CombatContext.Instance.enemyHand.Clear();
 
-        // Afficher les dégâts
-        StartCoroutine(ShowDamageText(playerDamageText, damage, Color.red));
-
-        playerAnimator.SetTrigger("Hurt");
-        enemyAnimator.SetTrigger("Attack");
+        int damage = 0;
+        if (playedCard.attack > 0)
+        {
+            damage = playedCard.attack;
+            player.currentHP -= damage;
+            StartCoroutine(ShowDamageText(playerDamageText, damage, Color.red));
+            playerAnimator.SetTrigger("Hurt");
+            enemyGameObject.GetComponent<Animator>().SetTrigger("Attack");
+            StartCoroutine(ShowComboText(comboText, playedCard));
+        }
 
         var dead = false;
         if (player.currentHP <= 0)
@@ -132,6 +141,45 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    private IEnumerator ShowComboText(TextMeshProUGUI comboText, CardData cardPlayed)
+    {
+        var ctx = CombatContext.Instance;
+        string name;
+        if (ctx.GetTurnState() == TurnState.Player)
+        {
+            name = ctx.playerData.ingameName;
+        }
+        else
+        {
+            name = ctx.enemyData.enemyName;
+        }
+
+        comboText.text = $"{name} played {cardPlayed.cardName}";
+        Color kanjiColor;
+        switch (cardPlayed.element)
+        {
+            case CardElement.Fire:
+                ColorUtility.TryParseHtmlString("#C4232F", out kanjiColor);
+                break;
+            case CardElement.Water:
+                ColorUtility.TryParseHtmlString("#0069AA", out kanjiColor);
+                break;
+            case CardElement.Wood:
+                ColorUtility.TryParseHtmlString("#32984A", out kanjiColor);
+                break;
+            case CardElement.Normal:
+                ColorUtility.TryParseHtmlString("#adadad", out kanjiColor);
+                break;
+            default:
+                kanjiColor = Color.white;
+                break;
+        }
+        comboText.color = kanjiColor;
+        comboDisplayGameObject.SetActive(true);
+        yield return new WaitForSeconds(playedComboNameDuration);
+        comboDisplayGameObject.SetActive(false);
+    }
+
     public void MakeDmg()
     {
         endTurnButton.SetActive(false);
@@ -141,17 +189,11 @@ public class CombatManager : MonoBehaviour
         var rawCombo = CombatContext.Instance.GetCombo();
         // Process combos
         var combo = ComboManager.Instance != null ? ComboManager.Instance.ProcessCombos(rawCombo) : rawCombo;
+        var cardPlayed = combo[0];
+        StartCoroutine(ShowComboText(comboText, cardPlayed));
 
-        int dmg = 0;
-        int heal = 0;
-        foreach (var cardData in combo)
-        {
-            if (cardData != null)
-            {
-                dmg += cardData.attack;
-                heal += cardData.health;
-            }
-        }
+        int dmg = cardPlayed.attack;
+        int heal = cardPlayed.health;
 
         playerData.currentHP += heal;
 
@@ -230,6 +272,7 @@ public class CombatManager : MonoBehaviour
         {
             enemyHpEffect.Play();
             enemyHpAnimator.SetTrigger("Hit");
+            enemyGameObject.GetComponent<Animator>().SetTrigger("Hurt");
             // Afficher les dégâts
             StartCoroutine(ShowDamageText(enemyDamageText, dmg, Color.red));
         }
@@ -238,7 +281,8 @@ public class CombatManager : MonoBehaviour
         if (enemy.currentHP <= 0)
         {
             enemy.currentHP = 0;
-            enemyGameObject.GetComponentInChildren<ParticleSystem>().Play();
+            var particles = enemyGameObject.GetComponentInChildren<ParticleSystem>();
+            if (particles != null) { particles.Play(); }
             turnText.text = "YOU WIN !";
             turnTextAnimator.SetTrigger("Show");
             won = true;
@@ -284,6 +328,7 @@ public class CombatManager : MonoBehaviour
         {
             turnTextAnimator.SetTrigger("Show");
             turnText.text = "ENEMY TURN !";
+            handManager.Draw();
             Invoke(nameof(TakeDmg), delayBeforeEnemyAttack);
         }
     }

@@ -1,19 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum MonsterType
-{
-    Undefined,
-    FireSlime
-}
-
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Monster : MonoBehaviour
 {
     [Header("Monster info")]
     public string enemyId;
-    public MonsterType type;
+    public Enemies type;
     public EnemyData enemyData;
     public float visionRange = 5f;
     public float combatTriggerRange = 2f;
@@ -102,7 +96,6 @@ public class Monster : MonoBehaviour
         ctx.enemyDefeated = false;
         ctx.enemyId = enemyId;
         ctx.playerData = target.GetComponent<Player>();
-        ctx.type = type;
 
         sceneTransitionManager.FadeToScene("CombatScene");
     }

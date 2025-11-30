@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1244b70165b030845a6eacda70ff0f8c, type: 3}
-  m_Name: BallCombo
+  m_Name: DragonFireBallCombo
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardName: Ball
-  kanji: "\u7389"
-  description: Throws a static force field ball dealing 30 dmg.
-  rarity: 1
-  type: 2
-  element: 4
+  cardName: Dragon's Fireball
+  kanji: 
+  description: 
+  rarity: 2
+  type: 3
+  element: 1
   inkCost: 0
-  attack: 30
+  attack: 140
   defense: 0
   health: 0
-  animationPrefab: {fileID: 7915170937800914492, guid: a27539e3985cd714881816e92e6efdbb, type: 3}
+  animationPrefab: {fileID: 8676235177418906980, guid: dbce34477565e024e8573765034ad82a, type: 3}
   animationDuration: 1
   animationType: 3

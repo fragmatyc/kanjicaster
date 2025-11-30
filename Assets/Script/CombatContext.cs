@@ -17,7 +17,6 @@ public class CombatContext : MonoBehaviour
     public List<CardData> enemyDeck;
     public List<CardData> enemyHand;
     public Player playerData;
-    public List<CardData> playerDeck;
     public List<CardData> playerHand;
 
     [Header("Return to exploration")]
@@ -25,7 +24,6 @@ public class CombatContext : MonoBehaviour
     public Vector3 playerReturnPosition;
     public bool enemyDefeated;
     public string enemyId;
-    public MonsterType type;
 
     private TurnState turnState;
 
@@ -42,6 +40,11 @@ public class CombatContext : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    void Start()
+    {
+        enemyDeck = enemyData.deck;
+    }
+
     public void Clear()
     {
         enemyData = null;
@@ -49,7 +52,6 @@ public class CombatContext : MonoBehaviour
         returnSceneName = "";
         enemyDefeated = false;
         enemyId = "";
-        type = MonsterType.Undefined;
         playerReturnPosition = Vector3.zero;
         currentCombo.Clear();
     }
@@ -85,7 +87,7 @@ public class CombatContext : MonoBehaviour
         CardData card;
         if (turnState == TurnState.Player)
         {
-            card = playerDeck[UnityEngine.Random.Range(0, playerDeck.Count)];
+            card = playerData.deck[UnityEngine.Random.Range(0, playerData.deck.Count)];
         }
         else
         {
