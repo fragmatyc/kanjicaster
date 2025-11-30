@@ -1,0 +1,19 @@
+{
+  "dialogLines": [
+   {
+        "speakerName": "Jiminy",
+        "text": "Continue mon grand tu vas arriver à oublier quel est ton objectif ! HAHAHAHAHA !",
+        "portraitName": "Jiminy"
+   },
+    {
+          "speakerName": "Jiminy",
+          "text": "Un vrai néant ce cerveau plein de truc pour se distraire ! HAHAHAHAHA !",
+          "portraitName": "Jiminy"
+    },
+    {
+          "speakerName": "Jiminy",
+          "text": "Bouh! Je sais même plus ce qu'il se passe. Tu sais c'était dur de bouger toutes ces boites ! ",
+          "portraitName": "Jiminy"
+    }
+  ]
+}

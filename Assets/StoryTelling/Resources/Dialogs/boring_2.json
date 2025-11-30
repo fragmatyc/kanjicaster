@@ -1,0 +1,24 @@
+{
+  "dialogLines": [
+    {
+      "speakerName": "Jiminy",
+      "text": "Te revoila ?! T'ai-je déjà raconté l'histoire du Z ? C'est très intéressant...",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Zoro ? Zelda ? Je ne sais plus... Ahahahahahaahaha... HAHAHAHAHAHA...",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Zoro est arrivé sans se presser ! Comme Link pour sauver Zelda...",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Apparement les hommes dont le nom commence par Z sont très très lents... Zzzzzzzzupeer lents...",
+      "portraitName": "Jiminy"
+    }
+  ]
+}

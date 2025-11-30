@@ -1,0 +1,35 @@
+{
+  "dialogLines": [
+    {
+      "speakerName": "Jiminy",
+      "text": "Es-tu prêt à entrer dans le labyrinthe {{Nom de joueur}} ?",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Te crois-tu capable de réaliser l'impossible ?",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "As-tu choisi la bonne arme ?",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Alors dis moi, vas-tu mourir ici ou dans le labyrinthe ?",
+      "portraitName": "Jiminy",
+      "choices": [
+        {
+          "text": "Je suis prêt, conduis moi au labyrinthe.",
+          "actionType": "ChangeScene",
+          "actionParam":"FireStoryLineLabyrinth"
+        },
+        {
+          "text": "Je ne suis pas prêt, laisse moi ici.",
+          "actionType": "DialogDefault"
+        }
+      ]
+    }
+  ]
+}

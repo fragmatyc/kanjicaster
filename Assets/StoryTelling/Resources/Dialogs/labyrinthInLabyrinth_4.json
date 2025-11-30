@@ -1,0 +1,24 @@
+{
+  "dialogLines": [
+   {
+        "speakerName": "Jiminy",
+        "text": "IL EST VIDE MOUAHAHAHAHAH Tout ca pour rien ! Quel délire !",
+        "portraitName": "Jiminy"
+   },
+    {
+          "speakerName": "Jiminy",
+          "text": "Hé pas de jugement, je dois bien me distraire un peu aussi. On peut pas dire que tu aies de la conversation !",
+          "portraitName": "Jiminy"
+    },
+    {
+          "speakerName": "Jiminy",
+          "text": "Allez file d'ici avant que je change d'avis et que je te mette dans un labyrinthe dans un labyrinthe dans un labyrinthe.",
+          "portraitName": "Jiminy"
+    },
+      {
+              "speakerName": "Jiminy",
+              "text": "N'y pense pas trop, tu risquerais un noed cérébral. AHAHAHAHAHA !",
+              "portraitName": "Jiminy"
+      }
+  ]
+}

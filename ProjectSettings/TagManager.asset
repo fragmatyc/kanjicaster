@@ -6,6 +6,7 @@ TagManager:
   tags:
   - StoryTelling
   - Ennemies
+  - boss
   - ComboIndicator
   layers:
   - Default

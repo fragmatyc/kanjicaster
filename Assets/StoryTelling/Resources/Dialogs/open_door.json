@@ -1,0 +1,25 @@
+{
+  "dialogLines": [
+    {
+      "speakerName": "??",
+      "text": "Veux-tu ouvrir la porte ?",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "??",
+      "text": "Dois-je l'ouvrir ?",
+      "portraitName": "Jiminy",
+      "choices": [
+        {
+          "text": "Oui !",
+          "actionType": "OpenDoor",
+          "actionParam":"OpenDoor"
+        },
+        {
+          "text": "Non",
+          "actionType": "RefuseChoice"
+        }
+      ]
+    }
+  ]
+}

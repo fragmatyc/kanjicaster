@@ -1,0 +1,19 @@
+{
+  "dialogLines": [
+   {
+        "speakerName": "Jiminy",
+        "text": "Je t'ai même laisser un coffre au bout!",
+        "portraitName": "Jiminy"
+   },
+    {
+          "speakerName": "Jiminy",
+          "text": "Quel Sympathie de ma part.",
+          "portraitName": "Jiminy"
+    },
+    {
+          "speakerName": "Jiminy",
+          "text": "Je dirais même plus. C'est de la charité.",
+          "portraitName": "Jiminy"
+    }
+  ]
+}
