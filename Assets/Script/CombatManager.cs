@@ -17,6 +17,8 @@ public class CombatManager : MonoBehaviour
     public TextMeshProUGUI enemyHpText;
 
     [Header("Combat")]
+    public float weekTypeDmgMultiplier = 1.5f;
+    public float strongTypeDmgMultiplier = 0.5f;
     public float delayBetweenTurns = 2f;
     public float delayBeforeEnemyAttack = 1f;
     public float delayBeforeReturnToExploration = 3f;
@@ -94,7 +96,7 @@ public class CombatManager : MonoBehaviour
         enemyPos.y += enemyTranform.bounds.extents.y;
         enemyDamageText.transform.position = enemyPos;
 
-        StartTurn();
+        StartNextTurn();
     }
 
     void Update()
@@ -143,13 +145,11 @@ public class CombatManager : MonoBehaviour
 
         if (dead)
         {
-            Invoke(nameof(HidePlayer), .3f);
             Invoke(nameof(ReturnToExploration), delayBeforeReturnToExploration);
         }
         else
         {
-            CombatContext.Instance.NextTurn();
-            Invoke(nameof(StartTurn), delayBetweenTurns);
+            Invoke(nameof(StartNextTurn), delayBetweenTurns);
         }
     }
 
@@ -247,7 +247,7 @@ public class CombatManager : MonoBehaviour
                     animInstance.GetComponent<Rigidbody2D>().linearVelocity = (enemyGameObject.transform.position - playerPos).normalized * 10;
 
                     var proj = animInstance.AddComponent<ProjectileBehavior>();
-                    proj.Initialize(dmg, enemyGameObject, this);
+                    proj.Initialize(dmg, enemyGameObject, this, card.element);
                 }
             }
         }
@@ -269,22 +269,71 @@ public class CombatManager : MonoBehaviour
 
         if (!isProjectile)
         {
-            ResolveDamage(dmg);
+            if (dmg > 0)
+            {
+                var comboElement = cardPlayed.element;
+                var enemyElement = enemy.mainElement;
+
+                dmg = ApplyElementMultiplier(dmg, comboElement, enemyElement);
+
+                ResolveDamage(dmg);
+            }
         }
     }
 
-    public void OnProjectileHit(int damage)
+    private int ApplyElementMultiplier(int originalDmg, CardElement comboElement, CardElement enemyElement)
     {
+        if (comboElement == CardElement.Fire)
+        {
+            if (enemyElement == CardElement.Wood)
+            {
+                return (int)Math.Round(originalDmg * strongTypeDmgMultiplier);
+            }
+            else if (enemyElement == CardElement.Water)
+            {
+                return (int)Math.Round(originalDmg * weekTypeDmgMultiplier);
+            }
+        }
+        else if (comboElement == CardElement.Water)
+        {
+            if (enemyElement == CardElement.Fire)
+            {
+                return (int)Math.Round(originalDmg * strongTypeDmgMultiplier);
+            }
+            else if (enemyElement == CardElement.Wood)
+            {
+                return (int)Math.Round(originalDmg * weekTypeDmgMultiplier);
+            }
+        }
+        else if (comboElement == CardElement.Wood)
+        {
+            if (enemyElement == CardElement.Water)
+            {
+                return (int)Math.Round(originalDmg * strongTypeDmgMultiplier);
+            }
+            else if (enemyElement == CardElement.Fire)
+            {
+                return (int)Math.Round(originalDmg * weekTypeDmgMultiplier);
+            }
+        }
+        return originalDmg;
+    }
+
+    public void OnProjectileHit(int damage, CardElement cardElement)
+    {
+        damage = ApplyElementMultiplier(damage, cardElement, CombatContext.Instance.enemyData.mainElement);
         ResolveDamage(damage);
     }
 
-    private void ResolveDamage(int dmg)
+    private void ResolveDamage(int dmg, bool critical = false)
     {
+        var player = CombatContext.Instance.playerData;
         var enemy = CombatContext.Instance.enemyData;
         enemy.currentHP -= dmg;
 
         if (dmg > 0)
         {
+
             enemyHpEffect.Play();
             enemyHpAnimator.SetTrigger("Hit");
             enemyGameObject.GetComponent<Animator>().SetTrigger("Hurt");
@@ -310,8 +359,7 @@ public class CombatManager : MonoBehaviour
         }
         else
         {
-            CombatContext.Instance.NextTurn();
-            Invoke(nameof(StartTurn), delayBetweenTurns);
+            Invoke(nameof(StartNextTurn), delayBetweenTurns);
         }
     }
 
@@ -330,9 +378,10 @@ public class CombatManager : MonoBehaviour
         sceneTransitionManager.FadeToScene(CombatContext.Instance.returnSceneName);
     }
 
-    public void StartTurn()
+    public void StartNextTurn()
     {
         var ctx = CombatContext.Instance;
+        ctx.NextTurn();
         if (ctx.GetTurnState() == TurnState.Player)
         {
             turnTextAnimator.SetTrigger("Show");
