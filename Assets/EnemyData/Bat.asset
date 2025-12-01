@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e59b8b56b4850644ab144c2786920cac, type: 3}
+  m_Name: Bat
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  level: 1
+  enemyName: Cave bat
+  maxHP: 75
+  currentHP: 0
+  attack: 2
+  defense: 0
+  initiative: 0
+  enemyType: 6
+  mainElement: 3
+  prefab: {fileID: 4275417365038420895, guid: c19d9b80907400c448462d5509b71344, type: 3}
+  deck:
+  - {fileID: 11400000, guid: 7ecdb50d5fcdb61478d2e12eeca87b40, type: 2}
+  - {fileID: 11400000, guid: 0a7e5905c9bbd3a4eb7cdca785cea95b, type: 2}

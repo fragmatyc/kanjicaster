@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Linq;
 using TMPro;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +17,8 @@ public class CombatManager : MonoBehaviour
     public TextMeshProUGUI enemyHpText;
 
     [Header("Combat")]
+    public float weekTypeDmgMultiplier = 1.5f;
+    public float strongTypeDmgMultiplier = 0.5f;
     public float delayBetweenTurns = 2f;
     public float delayBeforeEnemyAttack = 1f;
     public float delayBeforeReturnToExploration = 3f;
@@ -30,6 +35,9 @@ public class CombatManager : MonoBehaviour
     public TextMeshProUGUI playerNameText;
     public TextMeshProUGUI turnText;
     public Animator turnTextAnimator;
+    public TextMeshProUGUI comboText;
+    public GameObject comboDisplayGameObject;
+    public float playedComboNameDuration = 1f;
 
     [Header("Scene Transition")]
     public SceneTransitionManager sceneTransitionManager;
@@ -39,7 +47,6 @@ public class CombatManager : MonoBehaviour
     public GameObject playerGameObject;
     public GameObject enemyGameObject;
     public Image enemyHealthBar;
-    public Animator enemyAnimator;
     public Image playerHealthBar;
     public Animator playerAnimator;
     public HandManager handManager;
@@ -60,6 +67,13 @@ public class CombatManager : MonoBehaviour
         var player = ctx.playerData;
         if (player == null) return;
 
+        // Initialize enemy deck
+        if (ctx.enemyDeck == null || ctx.enemyDeck.Count == 0)
+        {
+            ctx.enemyDeck = new System.Collections.Generic.List<CardData>(enemy.deck);
+        }
+
+        enemyGameObject = EnemyPrefabFactory.instance.CreateEnemy(enemy);
         enemy.currentHP = enemy.maxHP;
         enemyNameText.text = $"{enemy.enemyName} (Lvl. {enemy.level})";
         enemyHealthBar.rectTransform.sizeDelta = new Vector2((float)enemy.currentHP / enemy.maxHP * 7.859985f, enemyHealthBar.rectTransform.sizeDelta.y);
@@ -77,7 +91,12 @@ public class CombatManager : MonoBehaviour
             ctx.SetTurnState(TurnState.Enemy);
         }
 
-        StartTurn();
+        var enemyPos = enemyGameObject.transform.position;
+        var enemyTranform = enemyGameObject.GetComponent<SpriteRenderer>();
+        enemyPos.y += enemyTranform.bounds.extents.y;
+        enemyDamageText.transform.position = enemyPos;
+
+        StartNextTurn();
     }
 
     void Update()
@@ -100,15 +119,19 @@ public class CombatManager : MonoBehaviour
         var player = CombatContext.Instance.playerData;
         var enemy = CombatContext.Instance.enemyData;
 
-        // TODO Use played card
-        int damage = enemy.attack;
-        player.currentHP -= damage;
+        var playedCard = ComboManager.Instance.GetBestCardToPlay(CombatContext.Instance.enemyHand);
+        CombatContext.Instance.enemyHand.Clear();
 
-        // Afficher les dégâts
-        StartCoroutine(ShowDamageText(playerDamageText, damage, Color.red));
-
-        playerAnimator.SetTrigger("Hurt");
-        enemyAnimator.SetTrigger("Attack");
+        int damage = 0;
+        if (playedCard.attack > 0)
+        {
+            damage = playedCard.attack;
+            player.currentHP -= damage;
+            StartCoroutine(ShowDamageText(playerDamageText, damage, Color.red));
+            playerAnimator.SetTrigger("Hurt");
+            enemyGameObject.GetComponent<Animator>().SetTrigger("Attack");
+            StartCoroutine(ShowComboText(comboText, playedCard));
+        }
 
         var dead = false;
         if (player.currentHP <= 0)
@@ -122,14 +145,51 @@ public class CombatManager : MonoBehaviour
 
         if (dead)
         {
-            Invoke(nameof(HidePlayer), .3f);
             Invoke(nameof(ReturnToExploration), delayBeforeReturnToExploration);
         }
         else
         {
-            CombatContext.Instance.NextTurn();
-            Invoke(nameof(StartTurn), delayBetweenTurns);
+            Invoke(nameof(StartNextTurn), delayBetweenTurns);
         }
+    }
+
+    private IEnumerator ShowComboText(TextMeshProUGUI comboText, CardData cardPlayed)
+    {
+        var ctx = CombatContext.Instance;
+        string name;
+        if (ctx.GetTurnState() == TurnState.Player)
+        {
+            name = ctx.playerData.ingameName;
+        }
+        else
+        {
+            name = ctx.enemyData.enemyName;
+        }
+
+        comboText.text = $"{name} played {cardPlayed.cardName}";
+        Color kanjiColor;
+        switch (cardPlayed.element)
+        {
+            case CardElement.Fire:
+                ColorUtility.TryParseHtmlString("#C4232F", out kanjiColor);
+                break;
+            case CardElement.Water:
+                ColorUtility.TryParseHtmlString("#0069AA", out kanjiColor);
+                break;
+            case CardElement.Wood:
+                ColorUtility.TryParseHtmlString("#32984A", out kanjiColor);
+                break;
+            case CardElement.Normal:
+                ColorUtility.TryParseHtmlString("#adadad", out kanjiColor);
+                break;
+            default:
+                kanjiColor = Color.white;
+                break;
+        }
+        comboText.color = kanjiColor;
+        comboDisplayGameObject.SetActive(true);
+        yield return new WaitForSeconds(playedComboNameDuration);
+        comboDisplayGameObject.SetActive(false);
     }
 
     public void MakeDmg()
@@ -141,17 +201,13 @@ public class CombatManager : MonoBehaviour
         var rawCombo = CombatContext.Instance.GetCombo();
         // Process combos
         var combo = ComboManager.Instance != null ? ComboManager.Instance.ProcessCombos(rawCombo) : rawCombo;
+        Debug.Log($"Raw combo: {string.Join(", ", rawCombo.Select(c => c.cardName))}");
+        Debug.Log($"Combo: {string.Join(", ", combo.Select(c => c.cardName))}");
+        var cardPlayed = combo[0];
+        StartCoroutine(ShowComboText(comboText, cardPlayed));
 
-        int dmg = 0;
-        int heal = 0;
-        foreach (var cardData in combo)
-        {
-            if (cardData != null)
-            {
-                dmg += cardData.attack;
-                heal += cardData.health;
-            }
-        }
+        int dmg = cardPlayed.attack;
+        int heal = cardPlayed.health;
 
         playerData.currentHP += heal;
 
@@ -185,12 +241,13 @@ public class CombatManager : MonoBehaviour
                     Debug.Log("CasterToTargetProjectile");
                     isProjectile = true;
                     var playerPos = playerGameObject.transform.position;
+                    playerPos.x += .25f;
                     playerPos.y += .25f;
                     var animInstance = Instantiate(card.animationPrefab, playerPos, Quaternion.identity);
                     animInstance.GetComponent<Rigidbody2D>().linearVelocity = (enemyGameObject.transform.position - playerPos).normalized * 10;
 
                     var proj = animInstance.AddComponent<ProjectileBehavior>();
-                    proj.Initialize(dmg, enemyGameObject, this);
+                    proj.Initialize(dmg, enemyGameObject, this, card.element);
                 }
             }
         }
@@ -212,24 +269,74 @@ public class CombatManager : MonoBehaviour
 
         if (!isProjectile)
         {
-            ResolveDamage(dmg);
+            if (dmg > 0)
+            {
+                var comboElement = cardPlayed.element;
+                var enemyElement = enemy.mainElement;
+
+                dmg = ApplyElementMultiplier(dmg, comboElement, enemyElement);
+
+                ResolveDamage(dmg);
+            }
         }
     }
 
-    public void OnProjectileHit(int damage)
+    private int ApplyElementMultiplier(int originalDmg, CardElement comboElement, CardElement enemyElement)
     {
+        if (comboElement == CardElement.Fire)
+        {
+            if (enemyElement == CardElement.Wood)
+            {
+                return (int)Math.Round(originalDmg * strongTypeDmgMultiplier);
+            }
+            else if (enemyElement == CardElement.Water)
+            {
+                return (int)Math.Round(originalDmg * weekTypeDmgMultiplier);
+            }
+        }
+        else if (comboElement == CardElement.Water)
+        {
+            if (enemyElement == CardElement.Fire)
+            {
+                return (int)Math.Round(originalDmg * strongTypeDmgMultiplier);
+            }
+            else if (enemyElement == CardElement.Wood)
+            {
+                return (int)Math.Round(originalDmg * weekTypeDmgMultiplier);
+            }
+        }
+        else if (comboElement == CardElement.Wood)
+        {
+            if (enemyElement == CardElement.Water)
+            {
+                return (int)Math.Round(originalDmg * strongTypeDmgMultiplier);
+            }
+            else if (enemyElement == CardElement.Fire)
+            {
+                return (int)Math.Round(originalDmg * weekTypeDmgMultiplier);
+            }
+        }
+        return originalDmg;
+    }
+
+    public void OnProjectileHit(int damage, CardElement cardElement)
+    {
+        damage = ApplyElementMultiplier(damage, cardElement, CombatContext.Instance.enemyData.mainElement);
         ResolveDamage(damage);
     }
 
-    private void ResolveDamage(int dmg)
+    private void ResolveDamage(int dmg, bool critical = false)
     {
+        var player = CombatContext.Instance.playerData;
         var enemy = CombatContext.Instance.enemyData;
         enemy.currentHP -= dmg;
 
         if (dmg > 0)
         {
+
             enemyHpEffect.Play();
             enemyHpAnimator.SetTrigger("Hit");
+            enemyGameObject.GetComponent<Animator>().SetTrigger("Hurt");
             // Afficher les dégâts
             StartCoroutine(ShowDamageText(enemyDamageText, dmg, Color.red));
         }
@@ -238,7 +345,8 @@ public class CombatManager : MonoBehaviour
         if (enemy.currentHP <= 0)
         {
             enemy.currentHP = 0;
-            enemyGameObject.GetComponentInChildren<ParticleSystem>().Play();
+            var particles = enemyGameObject.GetComponentInChildren<ParticleSystem>();
+            if (particles != null) { particles.Play(); }
             turnText.text = "YOU WIN !";
             turnTextAnimator.SetTrigger("Show");
             won = true;
@@ -251,8 +359,7 @@ public class CombatManager : MonoBehaviour
         }
         else
         {
-            CombatContext.Instance.NextTurn();
-            Invoke(nameof(StartTurn), delayBetweenTurns);
+            Invoke(nameof(StartNextTurn), delayBetweenTurns);
         }
     }
 
@@ -271,9 +378,10 @@ public class CombatManager : MonoBehaviour
         sceneTransitionManager.FadeToScene(CombatContext.Instance.returnSceneName);
     }
 
-    public void StartTurn()
+    public void StartNextTurn()
     {
         var ctx = CombatContext.Instance;
+        ctx.NextTurn();
         if (ctx.GetTurnState() == TurnState.Player)
         {
             turnTextAnimator.SetTrigger("Show");
@@ -284,6 +392,7 @@ public class CombatManager : MonoBehaviour
         {
             turnTextAnimator.SetTrigger("Show");
             turnText.text = "ENEMY TURN !";
+            handManager.Draw();
             Invoke(nameof(TakeDmg), delayBeforeEnemyAttack);
         }
     }

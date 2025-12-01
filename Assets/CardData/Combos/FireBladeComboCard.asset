@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1244b70165b030845a6eacda70ff0f8c, type: 3}
+  m_Name: FireBladeComboCard
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  cardName: Fire Blade
+  kanji: 
+  description: 
+  rarity: 1
+  type: 3
+  element: 1
+  inkCost: 0
+  attack: 75
+  defense: 0
+  health: 0
+  animationPrefab: {fileID: 5010754575702055475, guid: 6dea39b4d519d3740ac7269a2969e570, type: 3}
+  animationDuration: 1
+  animationType: 1

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebcdb2d3d005ccb4b8f183e004543f39, type: 3}
+  m_Name: FireBladeComboReceipe
+  m_EditorClassIdentifier: Assembly-CSharp::ComboRecipe
+  ingredients:
+  - {fileID: 11400000, guid: c8ccc1db284ca8f4dbf06003ea93a2eb, type: 2}
+  - {fileID: 11400000, guid: 666cdbcc95a01844b8b1e85d9d96f283, type: 2}
+  result: {fileID: 11400000, guid: c8749aae829ddd6419ab53d39fea6bae, type: 2}

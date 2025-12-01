@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e59b8b56b4850644ab144c2786920cac, type: 3}
+  m_Name: Pumpking
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  level: 1
+  enemyName: Pumpking
+  maxHP: 200
+  currentHP: 200
+  attack: 2
+  defense: 0
+  initiative: 15
+  enemyType: 8
+  mainElement: 1
+  prefab: {fileID: 7752890944509350043, guid: 79d3f74927a37544a99a31a6cbc7553b, type: 3}
+  deck:
+  - {fileID: 11400000, guid: c8ccc1db284ca8f4dbf06003ea93a2eb, type: 2}
+  - {fileID: 11400000, guid: 7ecdb50d5fcdb61478d2e12eeca87b40, type: 2}
+  - {fileID: 11400000, guid: e4333d4fafb84e444a3ec5ea436ddde5, type: 2}

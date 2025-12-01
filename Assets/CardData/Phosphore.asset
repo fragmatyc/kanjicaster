@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1244b70165b030845a6eacda70ff0f8c, type: 3}
+  m_Name: Phosphore
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  cardName: Phosphorus
+  kanji: "\u71D0"
+  description: Highly reactive and burning chimical that deals 85 dmg.
+  rarity: 3
+  type: 2
+  element: 1
+  inkCost: 0
+  attack: 85
+  defense: 0
+  health: 0
+  animationPrefab: {fileID: 103355884023225117, guid: 62d57843b91ff6a46a26d919e9ab42e9, type: 3}
+  animationDuration: 1
+  animationType: 1

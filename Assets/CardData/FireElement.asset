@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1244b70165b030845a6eacda70ff0f8c, type: 3}
   m_Name: FireElement
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  cardName: Hi
+  cardName: Fire
   kanji: "\u706B"
   description: A sudden temperature rise causes 40 dmg
   rarity: 1
@@ -23,4 +23,5 @@ MonoBehaviour:
   defense: 0
   health: 0
   animationPrefab: {fileID: 409910466754405759, guid: e24ccb0d68e9b7847985c1f0f053c111, type: 3}
+  animationDuration: 1
   animationType: 1

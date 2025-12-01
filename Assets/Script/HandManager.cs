@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using TMPro;
 using UnityEngine;
@@ -102,7 +103,12 @@ public class HandManager : MonoBehaviour
         var comboResult = comboManager.ProcessCombos(combo);
         if (comboResult.Count > 1)
         {
+
             Debug.Log("Invalid Combo");
+            foreach (var result in comboResult)
+            {
+                Debug.Log(result.cardName);
+            }
             return;
         }
         Debug.Log($"Clicking on card {cardIdx} and playing animation {cardIdx + 3}");
@@ -279,4 +285,5 @@ public class HandManager : MonoBehaviour
             thirdCard.gameObject.SetActive(false);
         }
     }
+
 }

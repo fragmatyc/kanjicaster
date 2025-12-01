@@ -356,13 +356,15 @@ MonoBehaviour:
   enemyDeck: []
   enemyHand: []
   playerData: {fileID: 0}
+<<<<<<< HEAD
   playerDeck: []
+=======
+>>>>>>> fa05dbe56702ebf596f5d2baea5bd428b0486707
   playerHand: []
   returnSceneName: 
   playerReturnPosition: {x: 0, y: 0, z: 0}
   enemyDefeated: 0
   enemyId: 
-  type: 0
 --- !u!1 &19727416
 GameObject:
   m_ObjectHideFlags: 0
@@ -41683,9 +41685,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 632af83bf957b3b4c963e990737d5f26, type: 3}
+  m_Resource: {fileID: 8300000, guid: 134e03e4b11976a43a116213aeea881f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.318
   m_Pitch: 1
   Loop: 1
   Mute: 0

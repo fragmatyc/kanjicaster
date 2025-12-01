@@ -16,7 +16,7 @@ MonoBehaviour:
   kanji: "\u7389"
   description: Throws a static force field ball dealing 30 dmg.
   rarity: 1
-  type: 3
+  type: 2
   element: 4
   inkCost: 0
   attack: 30
