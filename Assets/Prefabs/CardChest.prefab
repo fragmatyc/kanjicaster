@@ -205,7 +205,7 @@ MonoBehaviour:
   expectedActionParam: NextCard
   objectNeeded: 
   objectToDestroy: {fileID: 3218236799074986864}
-  cardData: {fileID: 11400000, guid: 86308e5c25832294b9377553451576a9, type: 2}
+  cardData: {fileID: 11400000, guid: 5b9d9256014ac9147af42e0b1068040d, type: 2}
 --- !u!1 &8840586991651110038
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,4 +252,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChangeCardManager
   dialogManager: {fileID: 0}
   dialogueResourcePath: dialogs/addCards
+  cardDataSend: {fileID: 0}
   alreadyTriggered: 0
+  player: {fileID: 0}
