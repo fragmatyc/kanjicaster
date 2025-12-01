@@ -21,7 +21,7 @@ public class DialogManager : MonoBehaviour
     [Header("Choices UI")]
     public GameObject choiceContainer;
     public GameObject choiceButtonPrefab;
-
+    public Transform  content;
     public float typingSpeed = 0.03f;
     public bool isActive = false;
     public bool isTyping = false;
@@ -29,6 +29,11 @@ public class DialogManager : MonoBehaviour
     private Coroutine typingCoroutine;
 
     int currentIndex=0;
+
+    void Awake() {
+        Transform container = choiceContainer.transform;
+         content = container.Find("Viewport/Content");
+    }
 
     void Start()
     {
@@ -100,11 +105,16 @@ public class DialogManager : MonoBehaviour
         return dialogLineFound;
     }
 
-    public void StartDialog(string ressourcesPath)
+    public void StartDialog(string ressourcesPath, DialogueChoice[] choices=null)
     {
         DialogLine[] newLines = LoadDialogFromJSON(ressourcesPath);
         if (newLines != null)
             lines = newLines;
+        
+        if (lines[lines.Length - 1].choices.Length == 0 && choices.Length > 0)
+        {
+            lines[lines.Length - 1].choices = choices;
+        }
         currentIndex = 0;
         isActive = true;
         dialogCanvas.SetActive(isActive);
@@ -148,14 +158,14 @@ public class DialogManager : MonoBehaviour
 
     void ShowChoices(DialogueChoice[] choices)
     {
-        foreach(Transform child in choiceContainer.transform)
+        foreach(Transform child in content)
         {
             Destroy(child.gameObject);
         }
 
         foreach(var choice in choices)
         {
-            GameObject choiceButtonObj = Instantiate(choiceButtonPrefab, choiceContainer.transform);
+            GameObject choiceButtonObj = Instantiate(choiceButtonPrefab, content );
             TMP_Text choiceText = choiceButtonObj.GetComponentInChildren<TMP_Text>();
             if (choiceText != null) {
                 choiceText.text = choice.text;
@@ -190,11 +200,12 @@ public class DialogManager : MonoBehaviour
             dialogText.text = lines[currentIndex].text;
             isTyping = false;
             return;
-        }
-        HandleChoiceAction(choice);
+        }    
+        Debug.Log("Choice nextLineIndex :"+ choice.nextLineIndex);
         if (choice.nextLineIndex < 0 )
         {
             EndDialog();
+            HandleChoiceAction(choice);
             return;
         }
         currentIndex = choice.nextLineIndex;

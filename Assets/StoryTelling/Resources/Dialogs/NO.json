@@ -1,0 +1,23 @@
+{
+  "dialogLines": [
+    {
+      "speakerName": "Jiminy",
+      "text": "NON ! ne passe pas par là !",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "C'est une très très mauvaise idée, je t'assure !",
+      "portraitName": "Jiminy"
+    },
+    {
+      "speakerName": "Jiminy",
+      "text": "Tu vas passer dans tout mes déchets, mes mauvaise idées, mes plans foireux.",
+      "portraitName": "Jiminy"
+    },{
+      "speakerName": "Jiminy",
+      "text": "Tu ressortiras de ce passage aussi noir que tes sombres pensées.",
+      "portraitName": "Jiminy"
+    }
+  ]
+}

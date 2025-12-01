@@ -10,7 +10,8 @@ public enum ChoiceActionType
     SetGameStateVariable,
     SetInventoryItem,
     OpenDoor,
-    RefuseChoice
+    RefuseChoice,
+    ChangeCard
 }
 
 [System.Serializable]

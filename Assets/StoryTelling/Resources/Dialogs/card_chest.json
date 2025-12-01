@@ -2,7 +2,7 @@
   "dialogLines": [
     {
       "speakerName": "??",
-      "text": "Ce coffre à l'air d'être spécial...",
+      "text": "Ce coffre à l'air d'être spécial... Peut-être qu'il contient un nouveau kanji !",
       "portraitName": "Jiminy"
     },
     {
@@ -12,7 +12,8 @@
       "choices": [
         {
           "text": "Oui !",
-          "actionType": "SetInvetoryItem"
+          "actionType": "SetGameStateVariable",
+          "actionParam":"NextCard"
         },
         {
           "text": "Non",
