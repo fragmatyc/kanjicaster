@@ -4,8 +4,10 @@ using UnityEngine.InputSystem;
 public class ChangeCardManager : MonoBehaviour {
     public DialogManager dialogManager;
     public string dialogueResourcePath = "dialogs/addCard";
-    private CardData cardDataSend;
+    [SerializeField]
+    public CardData cardDataSend;
     public bool alreadyTriggered = false;
+    public Player player;
 
     private void OnEnable()
     {
@@ -26,11 +28,12 @@ public class ChangeCardManager : MonoBehaviour {
     
     public void ChangeCard(CardData cardData) {
         cardDataSend = cardData;
+        Debug.Log("cardDataSend : " + cardDataSend.cardName);
         if (CombatContext.Instance == null) return;
-        if (CombatContext.Instance.playerDeck.Count >= 5) {
-            DialogueChoice[] choices = new DialogueChoice[CombatContext.Instance.playerDeck.Count];
-            for (int i = 0; i < CombatContext.Instance.playerDeck.Count; i++) {
-                CardData existingCard = CombatContext.Instance.playerDeck[i];
+        if (player.deck.Count >= 5) {
+            DialogueChoice[] choices = new DialogueChoice[player.deck.Count];
+            for (int i = 0; i < player.deck.Count; i++) {
+                CardData existingCard = player.deck[i];
                 choices[i] = new DialogueChoice {
                     text = "Remplacer " + existingCard.cardName + " par " + cardData.cardName,
                     actionType = ChoiceActionType.ChangeCard,
@@ -78,15 +81,13 @@ public class ChangeCardManager : MonoBehaviour {
             {
                 case ChoiceActionType.RefuseChoice:
                     return;
-                case ChoiceActionType.ChangeCard:
-                    Debug.Log("Change card : " + cardDataSend.cardName);
-                    if (CombatContext.Instance == null) return; 
-                    CardData cardToRemove = CombatContext.Instance.playerDeck.Find(card => card.cardName == choice.actionParam);  
+                case ChoiceActionType.ChangeCard:   
+
+                    CardData cardToRemove = player.deck.Find(card => card?.cardName == choice.actionParam);  
                     if (cardToRemove != null) {
-                        CombatContext.Instance.playerDeck.Remove(cardToRemove);
+                        player.deck.Remove(cardToRemove);
                     }
-                    CombatContext.Instance.playerDeck.Add(cardDataSend);   
-                      Debug.Log("combatContext Lenght : " + CombatContext.Instance.playerDeck.Count);
+                    player.deck.Add(cardDataSend);
                     return;
             }
         }
